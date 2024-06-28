@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pencarian Genre Buku</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #search-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        #search-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pencarian Genre Buku</h1>
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="Masukkan genre buku...">
+    </div>
+    <div id="result"></div>
+
+    <script>
+        const genres = {
+            "Fiksi": {
+                description: "Genre yang mencakup cerita imajinatif, tidak berdasarkan kejadian nyata.",
+                example: "Contoh: 'Laskar Pelangi' oleh Andrea Hirata"
+            },
+            "Non-Fiksi": {
+                description: "Genre yang berisi informasi faktual dan pengetahuan nyata.",
+                example: "Contoh: 'Sapiens: Riwayat Singkat Umat Manusia' oleh Yuval Noah Harari"
+            },
+            "Misteri": {
+                description: "Genre yang melibatkan teka-teki atau kejahatan yang perlu dipecahkan.",
+                example: "Contoh: 'The Jakarta Method' oleh Vincent Bevins"
+            },
+            "Romansa": {
+                description: "Genre yang berfokus pada hubungan romantis dan cinta.",
+                example: "Contoh: 'Ayat-Ayat Cinta' oleh Habiburrahman El Shirazy"
+            },
+            "Sains Fiksi": {
+                description: "Genre yang mengeksplorasi konsep ilmiah dan teknologi futuristik.",
+                example: "Contoh: 'Supernova' oleh Dee Lestari"
+            },
+            "Fantasi": {
+                description: "Genre yang mencakup elemen magis dan dunia imajiner.",
+                example: "Contoh Buku: 'Harry Potter dan Batu Bertuah' oleh J.K. Rowling"
+            },
+            "Horor": {
+                description: "Genre yang bertujuan untuk menakuti atau mengejutkan pembaca.",
+                example: "Contoh Buku: 'Danur' oleh Risa Saraswati"
+            },
+            "Biografi": {
+                description: "Genre yang menceritakan kisah hidup seseorang.",
+                example: "Contoh Buku: 'Habibie & Ainun' oleh B.J. Habibie"
+            },
+            "Sejarah": {
+                description: "Genre yang membahas peristiwa masa lalu dan tokoh-tokoh bersejarah.",
+                example: "Contoh Buku: 'Bumi Manusia' oleh Pramoedya Ananta Toer"
+            },
+            "Puisi": {
+                description: "Genre yang menggunakan bahasa estetis dan imajinatif untuk mengekspresikan ide atau emosi.",
+                example: "Contoh Buku: 'Hujan Bulan Juni' oleh Sapardi Djoko Damono"
+            }
+        };
+
+        const searchInput = document.getElementById('search-input');
+        const resultDiv = document.getElementById('result');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            let result = '';
+
+            for (const [genre, info] of Object.entries(genres)) {
+                if (genre.toLowerCase().includes(searchTerm)) {
+                    result += `<h2>${genre}</h2><p>${info.description}</p><p class="book-example">${info.example}</p>`;
+                }
+            }
+
+            resultDiv.innerHTML = result || '<p>Genre tidak ditemukan.</p>';
+        });
+    </script>
+</body>
+</html>
